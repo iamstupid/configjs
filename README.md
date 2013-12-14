@@ -1,0 +1,4 @@
+configjs
+========
+
+Function argument checker
