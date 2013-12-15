@@ -5,6 +5,9 @@ function Err(type,message){
 }
 function testConfig(config,initial){
     var res={};//create variable of returning
+    if(config===undefined){
+        config={};//set initialize value= Primitive Object/Dict
+    }
     for(var i in initial){//enum
         if(config[i]!==undefined){//if defined
             res[i]=config[i];//get it
