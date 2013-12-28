@@ -11,10 +11,10 @@ To embed the script into your page,use the code below:
 And use in your script:
 ```javascript
 function al(args){
-  var args={
+  this.args={
     message:["Hello world",false]
   }
-  var a=testConfig(this.args);
+  var a=testConfig(args,this.args);
   alert(a.message);
 }
 al();//will be "Hello world"
