@@ -3,10 +3,21 @@ function Err(type,message){
     this.message=message;//message
     return this;
 }
+function makeConfig(conf){
+    var a={};
+    var b=conf.split("|");
+    for(var i in b){
+        var c=b[i].split("=");
+        a[c[0]]=JSON.parse(c[1]);
+    }
+}
 function testConfig(config,initial){
     var res={};//create variable of returning
     if(config===undefined){
         config={};//set initialize value= Primitive Object/Dict
+    }
+    if(typeof config==="string"||config instanceof String){
+        config=makeConfig(config);
     }
     for(var i in initial){//enum
         if(config[i]!==undefined){//if defined
