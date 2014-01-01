@@ -19,7 +19,7 @@ function al(args){
 }
 al();//will be "Hello world"
 al({message:"Foobar"});//will be Foobar
-al("Foobar");//no property called message in "Foobar" so comes the default:Hello world
+al("Foobar");//no property called "Foobar" so comes the default:Hello world
 ```
 with `testConfig` method
 ###References
