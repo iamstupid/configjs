@@ -35,7 +35,30 @@
 <a name="configjs" class="anchor" href="#configjs"><span class="octicon octicon-link"></span></a>configjs</h1>
 
 <blockquote>
-<p>configjs is a interface(but not extension) of JavaScript,which means,you can use it's interface,but not as syntax(If you need the syntax,check brython or <em>coffeeScript</em>)</p>
+<p>configjs is a powerful tool to make overload functions<br>
+Everyone knows <code>JavaScript</code> doesn't allow function overload, so the traditional way to avoid it is to use <code>JavaScript arguments</code> or check argument type. It is unscientific and it makes the code hard to read and understand (just think about you are reading a open source library with <code>if(typeof)</code>s everywhere and function redirects(a famous example is <strong>jQuery</strong>))   </p>
+
+<div class="highlight highlight-javascript"><pre><span class="c1">//a piece of bad code</span>
+<span class="kd">function</span> <span class="nx">help</span><span class="p">(){</span>
+  <span class="k">if</span><span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="o">===</span><span class="mi">0</span><span class="p">){</span>
+    <span class="nx">print_help_message</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="kd">var</span> <span class="nx">k</span><span class="o">=</span><span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">k</span><span class="o">===</span><span class="s2">"object"</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">k</span><span class="p">.</span><span class="nx">help</span><span class="o">===</span><span class="s2">"undefined"</span><span class="p">){</span>
+      <span class="nx">print</span><span class="p">(</span><span class="nx">helpMap</span><span class="p">(</span><span class="nx">k</span><span class="p">));</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+      <span class="nx">print</span><span class="p">(</span><span class="nx">k</span><span class="p">.</span><span class="nx">help</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">k</span><span class="o">===</span><span class="s2">"function"</span><span class="p">){</span>
+    <span class="nx">print</span><span class="p">(</span><span class="nx">helpFunctionMap</span><span class="p">(</span><span class="nx">k</span><span class="p">));</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>The code is unreadable!<br>
+Why I should write like this?</p>
 </blockquote>
       </section>
     </div>
