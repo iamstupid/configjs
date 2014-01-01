@@ -35,8 +35,10 @@
 <a name="configjs" class="anchor" href="#configjs"><span class="octicon octicon-link"></span></a>configjs</h1>
 
 <blockquote>
-<p>configjs is a powerful tool to make overload functions<br>
-Everyone knows <code>JavaScript</code> doesn't allow function overload, so the traditional way to avoid it is to use <code>JavaScript arguments</code> or check argument type. It is unscientific and it makes the code hard to read and understand (just think about you are reading a open source library with <code>if(typeof)</code>s everywhere and function redirects(a famous example is <strong>jQuery</strong>))   </p>
+<p>configjs is a powerful tool to make overload functions   </p>
+</blockquote>
+
+<p>Everyone knows <code>JavaScript</code> doesn't allow function overload, so the traditional way to avoid it is to use <code>JavaScript arguments</code> or check argument type. It is unscientific and it makes the code hard to read and understand (just think about you are reading a open source library with <code>if(typeof)</code>s everywhere and function redirects(a famous example is <strong>jQuery</strong>))   </p>
 
 <div class="highlight highlight-javascript"><pre><span class="c1">//a piece of bad code</span>
 <span class="kd">function</span> <span class="nx">help</span><span class="p">(){</span>
@@ -57,9 +59,62 @@ Everyone knows <code>JavaScript</code> doesn't allow function overload, so the t
 <span class="p">}</span>
 </pre></div>
 
-<p>The code is unreadable!<br>
-Why I should write like this?</p>
+<p>The code is unreadable!    </p>
+
+<blockquote>
+<p>Why I should write like this?    </p>
 </blockquote>
+
+<p>The answer is use Object to send parameters in.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">function</span> <span class="nx">help</span><span class="p">(</span><span class="nx">a</span><span class="p">){</span>
+  <span class="k">if</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="kd">function</span><span class="p">){</span>
+    <span class="nx">print</span><span class="p">(</span><span class="nx">helpFunctionMap</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="kd">function</span><span class="p">));</span><span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">object</span><span class="p">){</span>
+    <span class="nx">print</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">object</span><span class="p">.</span><span class="nx">help</span><span class="o">?</span><span class="nx">a</span><span class="p">.</span><span class="nx">object</span><span class="p">.</span><span class="nx">help</span><span class="o">:</span><span class="nx">helpMap</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">object</span><span class="p">));</span><span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="kd">var</span><span class="p">){</span>
+    <span class="nx">print</span><span class="p">(</span><span class="nx">helpScope</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="kd">var</span><span class="p">,</span><span class="nx">a</span><span class="p">.</span><span class="nx">module</span><span class="p">));</span><span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nx">print_help_message</span><span class="p">();</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Now the code is clear.<br>
+So this is how I can help you to solve this.</p>
+
+<h2>
+<a name="introduce" class="anchor" href="#introduce"><span class="octicon octicon-link"></span></a>introduce</h2>
+
+<p><strong>configjs</strong>,a <code>JavaScript</code> tool, help you to check arguments and fill them<br>
+It can't do everything but we try the best to make its code clear and light.<br>
+We will add a lot of functions to it and make it into a great library.</p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>usage</h2>
+
+<h3>
+<a name="argument-pattern" class="anchor" href="#argument-pattern"><span class="octicon octicon-link"></span></a>argument pattern</h3>
+
+<p>Simple include, and simple use.No dependence on other libraries, because we don't need.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="c1">//usage</span>
+<span class="c1">//a tutorial</span>
+<span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="nx">args</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">argsp</span><span class="o">=</span><span class="p">{</span>
+    <span class="nx">a</span><span class="o">:</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="kc">false</span><span class="p">],</span>
+    <span class="nx">b</span><span class="o">:</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="kc">false</span><span class="p">]</span>
+  <span class="p">};</span>
+  <span class="nx">args</span><span class="o">=</span><span class="nx">testConfig</span><span class="p">(</span><span class="nx">args</span><span class="p">,</span><span class="nx">argsp</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">args</span><span class="p">.</span><span class="nx">a</span><span class="o">+</span><span class="nx">args</span><span class="p">.</span><span class="nx">b</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">//now how it outputs</span>
+<span class="nx">add</span><span class="p">();</span><span class="c1">//3</span>
+<span class="nx">add</span><span class="p">({</span><span class="nx">b</span><span class="o">:</span><span class="mi">4</span><span class="p">});</span><span class="c1">//5</span>
+<span class="nx">add</span><span class="p">({</span><span class="nx">a</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span><span class="nx">b</span><span class="o">:</span><span class="mi">6</span><span class="p">});</span><span class="c1">//9</span>
+</pre></div>
       </section>
     </div>
 
