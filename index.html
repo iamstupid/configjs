@@ -114,6 +114,8 @@ We will add a lot of functions to it and make it into a great library.</p>
 <span class="nx">add</span><span class="p">();</span><span class="c1">//3</span>
 <span class="nx">add</span><span class="p">({</span><span class="nx">b</span><span class="o">:</span><span class="mi">4</span><span class="p">});</span><span class="c1">//5</span>
 <span class="nx">add</span><span class="p">({</span><span class="nx">a</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span><span class="nx">b</span><span class="o">:</span><span class="mi">6</span><span class="p">});</span><span class="c1">//9</span>
+<span class="nx">add</span><span class="p">(</span><span class="s2">"a=6|b=6"</span><span class="p">);</span><span class="c1">//12</span>
+<span class="c1">//we simply parse strings using split method,so don't use add("a={a:\"|\"}"),| will split argument list.</span>
 </pre></div>
       </section>
     </div>
